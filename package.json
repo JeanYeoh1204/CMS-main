@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "test": "cross-env API='https://cms.chtoma.com/api' && cross-env NODE_OPTIONS='--inspect' && cross-env next dev",
-    "test:e2e": "cypress open",
+    "e2e": "cypress open",
     "build": "next build",
     "start": "next start",
     "lint": "tslint",

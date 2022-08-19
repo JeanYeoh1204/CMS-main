@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import cypress from "cypress";
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +38,18 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('login', (email, role) => {
+    cy.visit('/login');
+
+    const obj = {student:1, teacher:2, manager:3};
+    const index = obj[role];
+    cy.get(`#login_role > :nth-child(${index})`).click()
+    cy.get('#login_email').type(email)
+    cy.get('#login_password').type('111111')
+    cy.intercept('POST','/api/login').as('login');
+    
+    cy.get('.ant-btn > span').click()
+
+    cy.wait('@login');
+})
